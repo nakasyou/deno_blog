@@ -209,6 +209,7 @@ export function PostPage({ post, state }: PostPageProps) {
             {(post.author || state.author) && (
               <p>{post.author || state.author}</p>
             )}
+            <div>{JSON.stringify(state.links)}</div>
             <PrettyDate
               date={post.publishDate}
               dateFormat={state.dateFormat}
