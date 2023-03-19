@@ -209,7 +209,23 @@ export function PostPage({ post, state }: PostPageProps) {
             {(post.author || state.author) && (
               <p>{post.author || state.author}</p>
             )}
-            <div>{JSON.stringify(state.links)}</div>
+            <div>{state.links.map(link=>{
+              let imageUrl;
+              switch(link.title){
+                case "email":{
+                  imageUrl="";
+                }
+                default:{
+                  imageUrl=`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${link.title}.svg`
+                }
+              }
+              return (<span>
+                <a style={{
+                  backgroundImage: `url(${imageUrl})`
+                }}
+                href={link.url}></a>
+              </span>)
+            })}</div>
             <PrettyDate
               date={post.publishDate}
               dateFormat={state.dateFormat}
